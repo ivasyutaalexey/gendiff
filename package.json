@@ -1,0 +1,40 @@
+{
+  "name": "ai-gendiff",
+  "version": "0.0.4",
+  "description": "Test application",
+  "keywords": [
+    "logic",
+    "games"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
+    "lint": "npx eslint .",
+    "lint-fix": "npx eslint . --fix",
+    "start-app": "npx babel-node src/bin/gendiff.js",
+    "prepublishOnly": "npm run build"
+  },
+  "bin": {
+    "gendiff": "dist/bin/gendiff.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "author": "Alexey Ivasyuta",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.20.0",
+    "readline-sync": "^1.4.9"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/preset-flow": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
+  }
+}
