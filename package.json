@@ -1,6 +1,6 @@
 {
   "name": "ai-gendiff",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "description": "Test application",
   "keywords": [
     "logic",
@@ -27,7 +27,8 @@
   "author": "Alexey Ivasyuta",
   "license": "ISC",
   "dependencies": {
-    "commander": "^2.20.0"
+    "commander": "^2.20.0",
+    "js-yaml": "^3.13.1"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",

@@ -1,33 +1,23 @@
-const fs = require('fs');
+import path from 'path';
+import jsonParser from './parsers/json-parser';
+import yamlParser from './parsers/yaml-parser';
 
-const isObjectHasProperty = (context, property) => Object.prototype.hasOwnProperty.call(context, property);
+
+const getParser = (firstFilepath, secondFilepath) => {
+  let parser;
+  const firstFileExtname = path.extname(firstFilepath);
+  const secondFileExtname = path.extname(secondFilepath);
+
+  if (firstFileExtname === '.json' && secondFileExtname === '.json') {
+    parser = jsonParser;
+  } else if (firstFileExtname === '.yml' && secondFileExtname === '.yml') {
+    parser = yamlParser;
+  }
+
+  return parser;
+};
 
 export default (filePath1, filePath2) => {
-  const jsonBefore = JSON.parse(fs.readFileSync(filePath1, 'utf8'));
-  const jsonAfter = JSON.parse(fs.readFileSync(filePath2, 'utf8'));
-  const mergedObject = { ...jsonBefore, ...jsonAfter };
-  const result = ['{\n'];
-
-  Object.keys(mergedObject).forEach((key) => {
-    if (isObjectHasProperty(jsonBefore, key) && isObjectHasProperty(jsonAfter, key)) {
-      if (jsonBefore[key] === jsonAfter[key]) {
-        result.push(`    ${key}: ${jsonAfter[key]}\n`);
-      } else {
-        result.push(`  - ${key}: ${jsonBefore[key]}\n`);
-        result.push(`  + ${key}: ${jsonAfter[key]}\n`);
-      }
-    }
-
-    if (isObjectHasProperty(jsonBefore, key) && !isObjectHasProperty(jsonAfter, key)) {
-      result.push(`  - ${key}: ${jsonBefore[key]}\n`);
-    }
-
-    if (!isObjectHasProperty(jsonBefore, key) && isObjectHasProperty(jsonAfter, key)) {
-      result.push(`  + ${key}: ${jsonAfter[key]}\n`);
-    }
-  });
-
-  result.push('}');
-
-  return result.join('');
+  const parser = getParser(filePath1, filePath2);
+  return parser(filePath1, filePath2);
 };
