@@ -8,7 +8,7 @@ program
   .version('0.2.0')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<firstConfig> <secondConfig>')
-  .option('-f, --format [type]', 'Output format')
+  .option('-f, --output-format [type]', 'Output format, available: plain, tree, json', 'tree')
   .parse(process.argv);
 
 if (!program.args.length) {
@@ -17,4 +17,5 @@ if (!program.args.length) {
 }
 
 const [firstConfig, secondConfig] = program.args;
-console.log(gendiff(firstConfig, secondConfig));
+const diff = gendiff(firstConfig, secondConfig, program.outputFormat);
+console.log(diff);

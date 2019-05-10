@@ -2,32 +2,32 @@ import gendiff from '../src';
 
 const fs = require('fs');
 
-test('gendiff json', () => {
-  const diff = gendiff(
-    '__tests__/__fixtures__/json/before.json',
-    '__tests__/__fixtures__/json/after.json',
-  );
+test.each([
+  // ['json', 'plain'],
+  // ['yml', 'plain'],
+  // ['ini', 'plain'],
+  ['json', 'tree'],
+  ['yml', 'tree'],
+  ['ini', 'tree'],
+  ['json', 'json'],
+  ['yml', 'json'],
+  ['ini', 'json'],
+])(
+  'gendiff %s --format %s',
+  (fileExtension, outputFormat) => {
+    const diff = gendiff(
+      `__tests__/__fixtures__/before.${fileExtension}`,
+      `__tests__/__fixtures__/after.${fileExtension}`,
+      outputFormat,
+    );
 
-  const result = fs.readFileSync('__tests__/__fixtures__/diff.txt', 'utf8');
-  expect(diff).toBe(result);
-});
+    let result;
+    if (outputFormat === 'json') {
+      result = JSON.parse(fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8'));
+    } else {
+      result = fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8');
+    }
 
-test('gendiff yaml', () => {
-  const diff = gendiff(
-    '__tests__/__fixtures__/yaml/before.yml',
-    '__tests__/__fixtures__/yaml/after.yml',
-  );
-
-  const result = fs.readFileSync('__tests__/__fixtures__/diff.txt', 'utf8');
-  expect(diff).toBe(result);
-});
-
-test('gendiff ini', () => {
-  const diff = gendiff(
-    '__tests__/__fixtures__/ini/before.ini',
-    '__tests__/__fixtures__/ini/after.ini',
-  );
-
-  const result = fs.readFileSync('__tests__/__fixtures__/diff.txt', 'utf8');
-  expect(diff).toBe(result);
-});
+    expect(diff).toStrictEqual(result);
+  },
+);

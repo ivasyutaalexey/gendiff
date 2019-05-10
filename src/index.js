@@ -1,25 +1,38 @@
 import path from 'path';
-import jsonParser from './parsers/json-parser';
-import yamlParser from './parsers/yaml-parser';
-import iniParser from './parsers/ini-parser';
+import fs from 'fs';
 
-const getParser = (firstFilepath, secondFilepath) => {
-  let parser;
-  const firstFileExtname = path.extname(firstFilepath);
-  const secondFileExtname = path.extname(secondFilepath);
+import parse from './parsers';
+import buildAst from './builder';
+import PlainFormatter from './formatters/PlainFormatter';
+import TreeFormatter from './formatters/TreeFormatter';
+import JsonFormatter from './formatters/JsonFormatter';
 
-  if (firstFileExtname === '.json' && secondFileExtname === '.json') {
-    parser = jsonParser;
-  } else if (firstFileExtname === '.yml' && secondFileExtname === '.yml') {
-    parser = yamlParser;
-  } else if (firstFileExtname === '.ini' && secondFileExtname === '.ini') {
-    parser = iniParser;
+
+const getFormatter = (type) => {
+  let formatter;
+  switch (type) {
+    case 'plain': formatter = PlainFormatter; break;
+    case 'tree': formatter = TreeFormatter; break;
+    case 'json': formatter = JsonFormatter; break;
+    default:
+      // nothing
   }
-
-  return parser;
+  return formatter;
 };
 
-export default (filePath1, filePath2) => {
-  const parser = getParser(filePath1, filePath2);
-  return parser(filePath1, filePath2);
+const getParsedObject = (filepath) => {
+  const ext = path.extname(filepath);
+  const fileData = fs.readFileSync(filepath, 'utf8');
+  return parse(ext, fileData);
+};
+
+export default (filePath1, filePath2, outputFormat) => {
+  const configBefore = getParsedObject(filePath1);
+  const configAfter = getParsedObject(filePath2);
+  const formatter = getFormatter(outputFormat);
+  const ast = buildAst(configBefore, configAfter);
+
+  // console.log(JSON.stringify(ast, null, 2));
+
+  return formatter.format(ast);
 };
