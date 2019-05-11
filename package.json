@@ -1,10 +1,10 @@
 {
   "name": "ai-gendiff",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "Test application",
   "keywords": [
-    "logic",
-    "games"
+    "difference",
+    "config"
   ],
   "repository": {
     "type": "git",
