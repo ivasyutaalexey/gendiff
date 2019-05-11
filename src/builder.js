@@ -1,15 +1,15 @@
 import _ from 'lodash';
 
-const processValue = (value) => typeof value === 'undefined' ? null : value;
+const processValue = value => (typeof value === 'undefined' ? null : value);
 
 const types = [
   {
     check: (obj1, obj2, key) => (_.isObject(obj1[key]) && _.isObject(obj2[key])),
-    generateNode: (obj1, obj2, key) => ({
+    generateNode: (obj1, obj2, key, fn) => ({
       name: key,
       valueBefore: null,
       valueAfter: null,
-      children: buildAst(obj1[key], obj2[key]),
+      children: fn(obj1[key], obj2[key]),
       status: 'not_changed',
     }),
   },
@@ -60,7 +60,7 @@ const buildAst = (beforeJson, afterJson) => {
 
   return Object.keys(obj).map((key) => {
     const type = types.find(({ check }) => check(beforeJson, afterJson, key));
-    return type.generateNode(beforeJson, afterJson, key);
+    return type.generateNode(beforeJson, afterJson, key, buildAst);
   });
 };
 
