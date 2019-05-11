@@ -10,7 +10,7 @@ const types = [
       valueBefore: null,
       valueAfter: null,
       children: fn(obj1[key], obj2[key]),
-      status: 'not_changed',
+      status: 'unchanged',
     }),
   },
   {
@@ -50,7 +50,7 @@ const types = [
       valueBefore: processValue(obj1[key]),
       valueAfter: processValue(obj2[key]),
       children: [],
-      status: 'not_changed',
+      status: 'unchanged',
     }),
   },
 ];

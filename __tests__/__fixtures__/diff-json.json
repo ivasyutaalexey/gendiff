@@ -9,7 +9,7 @@
         "valueBefore": "Value 1",
         "valueAfter": "Value 1",
         "children": [],
-        "status": "not_changed"
+        "status": "unchanged"
       },
       {
         "name": "setting2",
@@ -37,7 +37,7 @@
             "valueBefore": "value",
             "valueAfter": "value",
             "children": [],
-            "status": "not_changed"
+            "status": "unchanged"
           },
           {
             "name": "ops",
@@ -47,7 +47,7 @@
             "status": "added"
           }
         ],
-        "status": "not_changed"
+        "status": "unchanged"
       },
       {
         "name": "follow",
@@ -73,7 +73,7 @@
         "status": "added"
       }
     ],
-    "status": "not_changed"
+    "status": "unchanged"
   },
   {
     "name": "group1",
@@ -92,7 +92,7 @@
         "valueBefore": "bar",
         "valueAfter": "bar",
         "children": [],
-        "status": "not_changed"
+        "status": "unchanged"
       },
       {
         "name": "nest",
@@ -104,7 +104,7 @@
         "status": "updated"
       }
     ],
-    "status": "not_changed"
+    "status": "unchanged"
   },
   {
     "name": "group2",

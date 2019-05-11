@@ -14,7 +14,7 @@ const statusFormatters = {
 
     return `Property '${property}' was updated from ${before} to ${after}`;
   },
-  not_changed: () => [],
+  unchanged: () => [],
 };
 
 const getNewPropertyPath = (oldPropertyPath, propertyName) => (oldPropertyPath === '' ? propertyName : `${oldPropertyPath}.${propertyName}`);

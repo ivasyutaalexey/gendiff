@@ -32,7 +32,7 @@ const statusActions = {
       `${tab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`,
     ];
   },
-  not_changed: (name, valueBefore, valueAfter, children, depth, fn) => {
+  unchanged: (name, valueBefore, valueAfter, children, depth, fn) => {
     const tab = getTab(depth);
     let formattedValue;
     if (children.length === 0) {
