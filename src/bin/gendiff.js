@@ -5,7 +5,7 @@ import gendiff from '../index';
 const program = require('commander');
 
 program
-  .version('0.3.0')
+  .version('0.3.2')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<firstConfig> <secondConfig>')
   .option('-f, --output-format [type]', 'Output format, available: plain, tree, json', 'tree')
@@ -17,7 +17,6 @@ if (!program.args.length) {
 }
 
 const [firstConfig, secondConfig] = program.args;
-// console.log(program.outputFormat);
 
 const diff = gendiff(firstConfig, secondConfig, program.outputFormat);
 console.log(diff);
