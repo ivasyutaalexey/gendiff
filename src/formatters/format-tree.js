@@ -17,26 +17,26 @@ const stringify = (value, depth) => {
 };
 
 const statusActions = {
-  added: (name, valueBefore, valueAfter, children, depth) => {
+  added: ({ name, valueAfter }, depth) => {
     const tab = getTab(depth);
     return `${tab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`;
   },
-  removed: (name, valueBefore, valueAfter, children, depth) => {
+  removed: ({ name, valueBefore }, depth) => {
     const tab = getTab(depth);
     return `${tab}- ${name}: ${stringify(valueBefore, depth + 1)}\n`;
   },
-  updated: (name, valueBefore, valueAfter, children, depth) => {
+  updated: ({ name, valueBefore, valueAfter }, depth) => {
     const tab = getTab(depth);
     return [
       `${tab}- ${name}: ${stringify(valueBefore, depth + 1)}\n`,
       `${tab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`,
     ];
   },
-  unchanged: (name, valueBefore, valueAfter, children, depth) => {
+  unchanged: ({ name, valueAfter }, depth) => {
     const tab = getTab(depth);
     return `${tab}  ${name}: ${valueAfter}\n`;
   },
-  node: (name, valueBefore, valueAfter, children, depth, fn) => {
+  node: ({ name, children }, depth, fn) => {
     const tab = getTab(depth);
     const formattedValue = fn(children, depth + 2);
     return `${tab}  ${name}: ${formattedValue}\n`;
@@ -44,13 +44,7 @@ const statusActions = {
 };
 
 const format = (astNodes, depth = 1) => {
-  const formattedNodes = astNodes.map((node) => {
-    const {
-      name, valueBefore, valueAfter, children, status,
-    } = node;
-    return statusActions[status](name, valueBefore, valueAfter, children, depth, format);
-  });
-
+  const formattedNodes = astNodes.map(node => statusActions[node.status](node, depth, format));
   return `{\n${_.flatten(formattedNodes).join('')}${getTab(depth - 1)}}`;
 };
 
