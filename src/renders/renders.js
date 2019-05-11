@@ -1,6 +1,6 @@
-import formatPlain from './format-plain';
-import formatTree from './format-tree';
-import formatJson from './format-json';
+import formatPlain from './plain';
+import formatTree from './tree';
+import formatJson from './json';
 
 export default (type) => {
   switch (type) {
