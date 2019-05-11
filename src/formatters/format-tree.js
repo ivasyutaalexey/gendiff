@@ -32,15 +32,13 @@ const statusActions = {
       `${tab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`,
     ];
   },
-  unchanged: (name, valueBefore, valueAfter, children, depth, fn) => {
+  unchanged: (name, valueBefore, valueAfter, children, depth) => {
     const tab = getTab(depth);
-    let formattedValue;
-    if (children.length === 0) {
-      formattedValue = valueAfter;
-    } else {
-      formattedValue = fn(children, depth + 2);
-    }
-
+    return `${tab}  ${name}: ${valueAfter}\n`;
+  },
+  node: (name, valueBefore, valueAfter, children, depth, fn) => {
+    const tab = getTab(depth);
+    const formattedValue = fn(children, depth + 2);
     return `${tab}  ${name}: ${formattedValue}\n`;
   },
 };

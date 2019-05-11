@@ -8,7 +8,7 @@ const builders = [
       valueBefore: null,
       valueAfter: null,
       children: fn(obj1[key], obj2[key]),
-      status: 'unchanged',
+      status: 'node',
     }),
   },
   {

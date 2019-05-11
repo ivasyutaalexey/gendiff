@@ -47,7 +47,7 @@
             "status": "added"
           }
         ],
-        "status": "unchanged"
+        "status": "node"
       },
       {
         "name": "follow",
@@ -73,7 +73,7 @@
         "status": "added"
       }
     ],
-    "status": "unchanged"
+    "status": "node"
   },
   {
     "name": "group1",
@@ -104,7 +104,7 @@
         "status": "updated"
       }
     ],
-    "status": "unchanged"
+    "status": "node"
   },
   {
     "name": "group2",
