@@ -1,5 +1,1 @@
-export default {
-  format(astNodes) {
-    return astNodes;
-  },
-};
+export default astNodes => astNodes;

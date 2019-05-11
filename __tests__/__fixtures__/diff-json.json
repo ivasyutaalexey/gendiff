@@ -1,47 +1,48 @@
 [
   {
     "name": "common",
-    "value": null,
+    "valueBefore": null,
+    "valueAfter": null,
     "children": [
       {
         "name": "setting1",
-        "value": "Value 1",
+        "valueBefore": "Value 1",
+        "valueAfter": "Value 1",
         "children": [],
         "status": "not_changed"
       },
       {
         "name": "setting2",
-        "value": "200",
+        "valueBefore": "200",
+        "valueAfter": null,
         "children": [],
-        "status": "deleted"
+        "status": "removed"
       },
       {
         "name": "setting3",
-        "value": true,
-        "children": [],
-        "status": "deleted"
-      },
-      {
-        "name": "setting3",
-        "value": {
+        "valueBefore": true,
+        "valueAfter": {
           "key": "value"
         },
         "children": [],
-        "status": "added"
+        "status": "updated"
       },
       {
         "name": "setting6",
-        "value": null,
+        "valueBefore": null,
+        "valueAfter": null,
         "children": [
           {
             "name": "key",
-            "value": "value",
+            "valueBefore": "value",
+            "valueAfter": "value",
             "children": [],
             "status": "not_changed"
           },
           {
             "name": "ops",
-            "value": "vops",
+            "valueBefore": null,
+            "valueAfter": "vops",
             "children": [],
             "status": "added"
           }
@@ -50,19 +51,22 @@
       },
       {
         "name": "follow",
-        "value": false,
+        "valueBefore": null,
+        "valueAfter": false,
         "children": [],
         "status": "added"
       },
       {
         "name": "setting4",
-        "value": "blah blah",
+        "valueBefore": null,
+        "valueAfter": "blah blah",
         "children": [],
         "status": "added"
       },
       {
         "name": "setting5",
-        "value": {
+        "valueBefore": null,
+        "valueAfter": {
           "key5": "value5"
         },
         "children": [],
@@ -73,54 +77,48 @@
   },
   {
     "name": "group1",
-    "value": null,
+    "valueBefore": null,
+    "valueAfter": null,
     "children": [
       {
         "name": "baz",
-        "value": "bas",
+        "valueBefore": "bas",
+        "valueAfter": "bars",
         "children": [],
-        "status": "deleted"
-      },
-      {
-        "name": "baz",
-        "value": "bars",
-        "children": [],
-        "status": "added"
+        "status": "updated"
       },
       {
         "name": "foo",
-        "value": "bar",
+        "valueBefore": "bar",
+        "valueAfter": "bar",
         "children": [],
         "status": "not_changed"
       },
       {
         "name": "nest",
-        "value": {
+        "valueBefore": {
           "key": "value"
         },
+        "valueAfter": "str",
         "children": [],
-        "status": "deleted"
-      },
-      {
-        "name": "nest",
-        "value": "str",
-        "children": [],
-        "status": "added"
+        "status": "updated"
       }
     ],
     "status": "not_changed"
   },
   {
     "name": "group2",
-    "value": {
+    "valueBefore": {
       "abc": "12345"
     },
+    "valueAfter": null,
     "children": [],
-    "status": "deleted"
+    "status": "removed"
   },
   {
     "name": "group3",
-    "value": {
+    "valueBefore": null,
+    "valueAfter": {
       "fee": "100500"
     },
     "children": [],

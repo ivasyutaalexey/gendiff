@@ -3,9 +3,9 @@ import gendiff from '../src';
 const fs = require('fs');
 
 test.each([
-  // ['json', 'plain'],
-  // ['yml', 'plain'],
-  // ['ini', 'plain'],
+  ['json', 'plain'],
+  ['yml', 'plain'],
+  ['ini', 'plain'],
   ['json', 'tree'],
   ['yml', 'tree'],
   ['ini', 'tree'],
@@ -23,7 +23,7 @@ test.each([
 
     let result;
     if (outputFormat === 'json') {
-      result = JSON.parse(fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8'));
+      result = JSON.parse(fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.json`, 'utf8'));
     } else {
       result = fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8');
     }

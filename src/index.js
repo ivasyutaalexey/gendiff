@@ -29,10 +29,10 @@ const getParsedObject = (filepath) => {
 export default (filePath1, filePath2, outputFormat) => {
   const configBefore = getParsedObject(filePath1);
   const configAfter = getParsedObject(filePath2);
-  const formatter = getFormatter(outputFormat);
+  const format = getFormatter(outputFormat);
   const ast = buildAst(configBefore, configAfter);
 
   // console.log(JSON.stringify(ast, null, 2));
 
-  return formatter.format(ast);
+  return format(ast);
 };
