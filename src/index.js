@@ -3,21 +3,27 @@ import fs from 'fs';
 
 import parse from './parsers';
 import buildAst from './builder';
-import PlainFormatter from './formatters/PlainFormatter';
-import TreeFormatter from './formatters/TreeFormatter';
-import JsonFormatter from './formatters/JsonFormatter';
+import formatPlain from './formatters/format-plain';
+import formatTree from './formatters/format-tree';
+import formatJson from './formatters/format-json';
 
 
 const getFormatter = (type) => {
-  let formatter;
+  let format;
   switch (type) {
-    case 'plain': formatter = PlainFormatter; break;
-    case 'tree': formatter = TreeFormatter; break;
-    case 'json': formatter = JsonFormatter; break;
+    case 'plain':
+      format = formatPlain;
+      break;
+    case 'tree':
+      format = formatTree;
+      break;
+    case 'json':
+      format = formatJson;
+      break;
     default:
-      // nothing
+    // nothing
   }
-  return formatter;
+  return format;
 };
 
 const getParsedObject = (filepath) => {
@@ -29,6 +35,7 @@ const getParsedObject = (filepath) => {
 export default (filePath1, filePath2, outputFormat) => {
   const configBefore = getParsedObject(filePath1);
   const configAfter = getParsedObject(filePath2);
+
   const format = getFormatter(outputFormat);
   const ast = buildAst(configBefore, configAfter);
 
