@@ -8,7 +8,7 @@ import getFormatter from './renderers';
 const parseFile = (filepath) => {
   const ext = path.extname(filepath);
   const fileData = fs.readFileSync(filepath, 'utf8');
-  return parse(ext, fileData);
+  return parse(ext.slice(1), fileData);
 };
 
 const render = (ast, outputFormat) => getFormatter(outputFormat)(ast);
