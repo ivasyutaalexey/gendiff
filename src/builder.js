@@ -35,8 +35,8 @@ const builders = [
 ];
 
 const buildAst = (beforeJson, afterJson) => {
-  const obj = { ...beforeJson, ...afterJson };
-  return Object.keys(obj).map((key) => {
+  const keys = _.union(Object.keys(beforeJson), Object.keys(afterJson));
+  return keys.map((key) => {
     const builder = builders.find(({ check }) => check(beforeJson, afterJson, key));
     return builder.createNode(beforeJson, afterJson, key, buildAst);
   });
