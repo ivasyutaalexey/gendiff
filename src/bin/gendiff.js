@@ -8,14 +8,14 @@ program
   .description('Compares two configuration files and shows a difference.')
   .arguments('<firstConfig> <secondConfig>')
   .option('-f, --output-format [type]', 'Output format, available: plain, tree, json', 'tree')
-  .parse(process.argv);
+  .action((firstConfig, secondConfig, cmd) => {
+    const diff = gendiff(firstConfig, secondConfig, cmd.outputFormat);
+    console.log(diff);
+  });
+
+program.parse(process.argv);
 
 if (!program.args.length) {
   console.error('no params given!');
   process.exit(1);
 }
-
-const [firstConfig, secondConfig] = program.args;
-
-const diff = gendiff(firstConfig, secondConfig, program.outputFormat);
-console.log(diff);
