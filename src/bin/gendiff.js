@@ -7,7 +7,11 @@ program
   .version('0.3.2')
   .description('Compares two configuration files and shows a difference.')
   .arguments('<firstConfig> <secondConfig>')
-  .option('-f, --output-format [type]', 'Output format, available: plain, tree, json', 'tree')
+  .option(
+    '-f, --output-format [type]',
+    'Output format, available: plain, tree, json',
+    'tree',
+  )
   .action((firstConfig, secondConfig, cmd) => {
     const diff = gendiff(firstConfig, secondConfig, cmd.outputFormat);
     console.log(diff);
