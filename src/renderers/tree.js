@@ -8,25 +8,24 @@ const stringify = (value, depth) => {
   }
 
   const tab = getTab(depth);
-  const result = ['{\n'];
-
-  Object.keys(value).map(key => result.push(`${tab}    ${key}: ${value[key]}\n`));
+  const result = ['{'];
+  Object.keys(value).map(key => result.push(`${tab}    ${key}: ${value[key]}`));
   result.push(`${tab}}`);
 
-  return result.join('');
+  return result.join('\n');
 };
 
 const formatters = {
-  added: ({ name, valueAfter }, openTab, depth) => `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`,
-  removed: ({ name, valueBefore }, openTab, depth) => `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}\n`,
+  added: ({ name, valueAfter }, openTab, depth) => `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}`,
+  removed: ({ name, valueBefore }, openTab, depth) => `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}`,
   updated: ({ name, valueBefore, valueAfter }, openTab, depth) => (
     `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}\n`
-    + `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}\n`
+    + `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}`
   ),
-  unchanged: ({ name, valueAfter }, openTab) => `${openTab}  ${name}: ${valueAfter}\n`,
+  unchanged: ({ name, valueAfter }, openTab) => `${openTab}  ${name}: ${valueAfter}`,
   node: ({ name, children }, openTab, depth, fn) => {
     const formattedValue = fn(children, depth + 2);
-    return `${openTab}  ${name}: ${formattedValue}\n`;
+    return `${openTab}  ${name}: ${formattedValue}`;
   },
 };
 
@@ -38,7 +37,7 @@ const render = (astNodes, depth = 1) => {
     const format = formatters[node.status];
     return format(node, openTab, depth, render);
   });
-  return `{\n${_.flatten(formattedNodes).join('')}${closeTab}}`;
+  return `{\n${_.flatten(formattedNodes).join('\n')}\n${closeTab}}`;
 };
 
 export default render;
