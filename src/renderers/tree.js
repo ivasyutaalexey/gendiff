@@ -8,11 +8,8 @@ const stringify = (value, depth) => {
   }
 
   const tab = getTab(depth);
-  const result = ['{'];
-  Object.keys(value).map(key => result.push(`${tab}    ${key}: ${value[key]}`));
-  result.push(`${tab}}`);
-
-  return result.join('\n');
+  const rows = Object.keys(value).map(key => `${tab}    ${key}: ${value[key]}`);
+  return ['{', ...rows, `${tab}}`].join('\n');
 };
 
 const formatters = {
