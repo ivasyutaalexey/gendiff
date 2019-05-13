@@ -1,6 +1,5 @@
+import fs from 'fs';
 import gendiff from '../src';
-
-const fs = require('fs');
 
 test.each([
   ['json', 'plain'],

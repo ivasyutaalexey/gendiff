@@ -3,7 +3,7 @@ import fs from 'fs';
 
 import parse from './parsers';
 import buildAst from './builder';
-import getFormatter from './renders/renders';
+import getFormatter from './renderers';
 
 const parseFile = (filepath) => {
   const ext = path.extname(filepath);
