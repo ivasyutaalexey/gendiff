@@ -20,13 +20,7 @@ test.each([
       outputFormat,
     );
 
-    let result;
-    if (outputFormat === 'json') {
-      result = JSON.parse(fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8'));
-    } else {
-      result = fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8');
-    }
-
+    const result = fs.readFileSync(`__tests__/__fixtures__/diff-${outputFormat}.txt`, 'utf8');
     expect(diff).toStrictEqual(result);
   },
 );
