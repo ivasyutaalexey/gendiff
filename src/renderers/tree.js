@@ -15,10 +15,10 @@ const stringify = (value, depth) => {
 const formatters = {
   added: ({ name, valueAfter }, openTab, depth) => `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}`,
   removed: ({ name, valueBefore }, openTab, depth) => `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}`,
-  updated: ({ name, valueBefore, valueAfter }, openTab, depth) => (
-    `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}\n`
-    + `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}`
-  ),
+  updated: ({ name, valueBefore, valueAfter }, openTab, depth) => ([
+    `${openTab}- ${name}: ${stringify(valueBefore, depth + 1)}`,
+    `${openTab}+ ${name}: ${stringify(valueAfter, depth + 1)}`,
+  ]),
   unchanged: ({ name, valueAfter }, openTab) => `${openTab}  ${name}: ${valueAfter}`,
   node: ({ name, children }, openTab, depth, fn) => {
     const formattedValue = fn(children, depth + 2);
