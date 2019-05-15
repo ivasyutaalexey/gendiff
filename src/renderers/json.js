@@ -1,1 +1,1 @@
-export default astNodes => astNodes;
+export default astNodes => JSON.stringify(astNodes);
