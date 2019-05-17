@@ -4,6 +4,9 @@ start:
 build:
     NODE_ENV=production babel src --out-dir dist --source-maps inline
 
+publish:
+    npm publish
+
 lint:
     npx eslint .
 
@@ -11,4 +14,4 @@ lint-fix:
     npx eslint . --fix
 
 test:
-    npm test
+    jest
