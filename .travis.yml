@@ -5,5 +5,5 @@ node_js:
   - node
 
 script:
-  - npx eslint .
-  - npm test
+  - make lint
+  - make test
