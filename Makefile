@@ -10,5 +10,5 @@ lint:
 lint-fix:
     npx eslint . --fix
 
-make test
+test:
     npm test
