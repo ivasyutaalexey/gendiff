@@ -14,4 +14,4 @@ lint-fix:
 	npx eslint . --fix
 
 test:
-	jest
+	npm test

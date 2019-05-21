@@ -11,6 +11,7 @@
     "url": "git+https://github.com/ivasyutaalexey/gendiff"
   },
   "scripts": {
+    "test": "jest",
     "prepublishOnly": "make build"
   },
   "bin": {
